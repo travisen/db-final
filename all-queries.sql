@@ -7,11 +7,9 @@ CREATE TABLE Characters
 	homeworld INTEGER,
 	faction INTEGER,
 	ship VARCHAR(255),
+	structure VARCHAR(255),
 	species INTEGER
 );
 #Characters Insert
 
-INSERT INTO `Characters`(`id`,`f_name`,`l_name`,`homeworld`,`faction`,`ship`,`structure`,`species`)
-VALUES (NULL, "Gial", "Ackbar", "Mon Cala", "New Republic","Home One", NULL, "Mon Calamari");
-
-
+INSERT INTO `Characters`

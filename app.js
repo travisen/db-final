@@ -20,6 +20,17 @@ app.get('/', function(req,res,next){
 	res.render('home');
 });
 
+
+app.get('/characters', function(req,res,next){
+  mysql.pool.query('SELECT * FROM Characters', function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    res.send(JSON.stringify(rows));
+  });
+});
+
 app.get('/templates', function(req,res,next){
 	//console.log("test");
 	res.render('templates');
