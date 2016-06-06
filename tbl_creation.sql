@@ -1,5 +1,5 @@
 #Character Table Creation
-CREATE TABLE Character
+CREATE TABLE Characters
 (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	f_name VARCHAR(255) NOT NULL,
@@ -8,6 +8,5 @@ CREATE TABLE Character
 	faction INTEGER,
 	ship VARCHAR(255),
 	structure VARCHAR(255),
-	species INTEGER,
-	UNIQUE (first_name. last_name)
+	species INTEGER
 );
