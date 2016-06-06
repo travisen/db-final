@@ -12,6 +12,11 @@ CREATE TABLE Characters
 #Characters Insert
 
 INSERT INTO `Characters`(`id`,`f_name`,`l_name`,`homeworld`,`faction`,`ship`,`structure`,`species`)
+VALUES (NULL, "Mon", "Mothma", "Chandrila", "New Republic", NULL, NULL, "Human");
+
+INSERT INTO `Characters`(`id`,`f_name`,`l_name`,`homeworld`,`faction`,`ship`,`structure`,`species`)
 VALUES (NULL, "Gial", "Ackbar", "Mon Cala", "New Republic","Home One", NULL, "Mon Calamari");
 
+INSERT INTO `Characters`(`id`,`f_name`,`l_name`,`homeworld`,`faction`,`ship`,`structure`,`species`)
+VALUES (NULL, "Gial", "Ackbar", "Mon Cala", "New Republic","Home One", NULL, "Mon Calamari");
 

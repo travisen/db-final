@@ -20,8 +20,14 @@ app.get('/', function(req,res,next){
 	res.render('home');
 });
 
+app.post('/insert', function(req,res,next){
+  
+  var intoTable = null;
+  var dataRecieved = [];
+  mysql.pool.query('INSERT' INTO )
+});
 
-app.get('/characters', function(req,res,next){
+app.get('/get-characters', function(req,res,next){
   mysql.pool.query('SELECT * FROM Characters', function(err,rows,fields){
     if(err){
       next(err);
@@ -29,6 +35,10 @@ app.get('/characters', function(req,res,next){
     }
     res.send(JSON.stringify(rows));
   });
+});
+
+app.get('/view-characters', function(req,res,next){
+  res.render('view-characters');
 });
 
 app.get('/templates', function(req,res,next){
