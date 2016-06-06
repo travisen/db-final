@@ -21,10 +21,21 @@ app.get('/', function(req,res,next){
 });
 
 app.post('/insert', function(req,res,next){
-  
+
   var intoTable = null;
+  intoTable = "Characters";  
   var dataRecieved = [];
-  mysql.pool.query('INSERT' INTO )
+
+  console.log(req.body);
+
+  dataRecieved.push(req.body);
+
+  mysql.pool.query('INSERT INTO'+ intoTable + ' SET ?', dataRecieved, function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+  });
 });
 
 app.get('/get-characters', function(req,res,next){

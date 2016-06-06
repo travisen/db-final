@@ -11,7 +11,6 @@
 				<th>Faction</th>
 				<th>Ship</th>
 				<th>Structure</th>
-				<th>Weapon</th>
 				<th>Species</th>
 			</tr>
 		</thead>
@@ -32,10 +31,32 @@
 	<br>
 
 	<h3>Add characters</h3>
-	<form action="http://localhost:3012/" method="POST">
+	<form action="http://localhost:3012/insert" method="POST">
+		<div class="row">
+			<div class ="four columns">
+				<label>First Name</label>
+				<input class ="u-full-width" placeholder="Luke">
+			</div>
+			<div class ="four columns">
+				<label>Last Name</label>
+				<input "u-full-width" placeholder="Luke">
+			</div>
+		</div>
 
-		<label>Test Form</label>
-		<input value="{{this.name}}">
+		<label>Homeworld</label>
+		<input placeholder="Luke">
+
+		<label>Faction</label>
+		<input placeholder="Luke">
+
+		<label>Ship</label>
+		<input placeholder="Luke">
+
+		<label>Structure</label>
+		<input placeholder="Luke">
+
+		<label>Species</label>
+		<input placeholder="Luke">
 
 		<input type="submit" value="Submit"/>
 	</form>
