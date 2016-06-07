@@ -1,25 +1,47 @@
-<div class ="container">
-	<h1>Home Page</h1>
+<div class ="container" id="planets-page">
+	<h1>Planets</h1>
 	<table>
 		<thead>
 			<tr>
-				<th>Test Header</th>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Region</th>
+				<th>System</th>
+				<th>Native Species</th>
+				<th>Population</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="table-body">
 			<tr>
-				<td>{{this.}}</td>
+				<td>{{this.name}}</td>
+				<td>{{this.region}}</td>
+				<td>{{this.system}}</td>
+				<td>{{this.species}}</td>
+				<td>{{this.population}}</td>
 			</tr>
 		</tbody>
 	</table>
 
 	<br>
 
-	<form action="http://localhost:3012/" method="POST">
+	<form>
 
-		<label>Test Form</label>
-		<input value="{{this.name}}">
+		<label>Name</label>
+		<input placeholder="Coruscant" id="name">
 
-		<input type="submit" value="Submit"/>
+		<label>Region</label>
+		<input placeholder="Core Worlds" id="region">
+
+		<label>System</label>
+		<input placeholder="Coruscant System" id="system">
+
+		<label>Species</label>
+		<input placeholder="Coruscant" id="species">
+
+		<label>Population</label>
+		<input placeholder="Coruscant" id="population">
+
+
+		<input type="submit" value="Submit" id="submit-data-planets"/>
 	</form>
 </div>
