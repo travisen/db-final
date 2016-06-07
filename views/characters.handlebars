@@ -11,11 +11,10 @@
 				<th>Faction</th>
 				<th>Ship</th>
 				<th>Structure</th>
-				<th>Weapon</th>
 				<th>Species</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="table-body">
 			<tr>
 				<td>{{this.id}}</td>
 				<td>{{this.f_name}}</td>
@@ -24,7 +23,6 @@
 				<td>{{this.faction}}</td>
 				<td>{{this.ship}}</td>
 				<td>{{this.structure}}</td>
-				<td>{{this.weapon}}</td>
 				<td>{{this.species}}</td>
 			</tr>
 		</tbody>
@@ -33,10 +31,32 @@
 	<br>
 
 	<h3>Add characters</h3>
-	<form action="http://localhost:3012/" method="POST">
+	<form action="http://localhost:3012/insert" method="POST">
+		<div class="row">
+			<div class ="four columns">
+				<label>First Name</label>
+				<input class ="u-full-width" placeholder="Luke">
+			</div>
+			<div class ="four columns">
+				<label>Last Name</label>
+				<input "u-full-width" placeholder="Luke">
+			</div>
+		</div>
 
-		<label>Test Form</label>
-		<input value="{{this.name}}">
+		<label>Homeworld</label>
+		<input placeholder="Tatooine">
+
+		<label>Faction</label>
+		<input placeholder="New Republic">
+
+		<label>Ship</label>
+		<input placeholder="Luke's Scout Ship">
+
+		<label>Structure</label>
+		<input placeholder="Luke">
+
+		<label>Species</label>
+		<input placeholder="Human">
 
 		<input type="submit" value="Submit"/>
 	</form>

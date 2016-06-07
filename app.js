@@ -22,15 +22,25 @@ app.get('/', function(req,res,next){
 
 app.post('/insert', function(req,res,next){
 
-  var intoTable = null;
-  intoTable = "Characters";  
+  var table = null;
+  table = "Species";  
   var dataRecieved = [];
 
-  console.log(req.body);
+  console.log("inserting into table: ", table);
+  console.log("data from client", req.body);
 
   dataRecieved.push(req.body);
 
-  mysql.pool.query('INSERT INTO'+ intoTable + ' SET ?', dataRecieved, function(err,rows,fields){
+  /*
+  var sql = "INSERT INTO ?? SET ??";
+  var inserts = [table, req.body];
+  sql = mysql.format(sql, inserts);
+  */
+  
+  var sql = ("INSERT INTO " + table + " SET ?")
+  console.log("query after processing", sql);
+  
+  mysql.pool.query(sql, dataRecieved, function(err,rows,fields){
     if(err){
       next(err);
       return;
@@ -49,7 +59,92 @@ app.get('/get-characters', function(req,res,next){
 });
 
 app.get('/view-characters', function(req,res,next){
-  res.render('view-characters');
+  res.render('characters');
+});
+
+app.get('/get-species', function(req,res,next){
+  mysql.pool.query('SELECT * FROM Species', function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    res.send(JSON.stringify(rows));
+  });
+});
+
+app.get('/view-species', function(req,res,next){
+  res.render('species');
+});
+
+app.get('/get-planets', function(req,res,next){
+  mysql.pool.query('SELECT * FROM Planets', function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    res.send(JSON.stringify(rows));
+  });
+});
+
+app.get('/view-planets', function(req,res,next){
+  res.render('planets');
+});
+
+
+app.get('/get-factions', function(req,res,next){
+  mysql.pool.query('SELECT * FROM Factions', function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    res.send(JSON.stringify(rows));
+  });
+});
+
+app.get('/view-factions', function(req,res,next){
+  res.render('faction');
+});
+
+app.get('/get-ships', function(req,res,next){
+  mysql.pool.query('SELECT * FROM Ships', function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    res.send(JSON.stringify(rows));
+  });
+});
+
+app.get('/view-ships', function(req,res,next){
+  res.render('ships');
+});
+
+app.get('/get-service', function(req,res,next){
+  mysql.pool.query('SELECT * FROM Serves_on', function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    res.send(JSON.stringify(rows));
+  });
+});
+
+app.get('/view-service', function(req,res,next){
+  res.render('service');
+});
+
+app.get('/get-leaders', function(req,res,next){
+  mysql.pool.query('SELECT * FROM Faction_leaders', function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    res.send(JSON.stringify(rows));
+  });
+});
+
+app.get('/view-leaders', function(req,res,next){
+  res.render('view-leaders');
 });
 
 app.get('/templates', function(req,res,next){
