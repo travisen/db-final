@@ -23,11 +23,40 @@ function populateTable(tableNameFromDB){
 				}
 			}
 		} else 
-			console.log("Errow in network request: " + request.statusText);
+			console.log("Error in network request: " + request.statusText);
 	});
 	req.send(null);
 };
 
+function populateDropdown(tableIn){
+
+	var req = new XMLHttpRequest();
+	var payload = {table: null};
+	payload.table = tableIn;
+
+	req.open("POST", "http://localhost:3012/dropdowns", true);
+	req.setRequestHeader('Content-Type', 'application/json');
+
+	req.addEventListener('load', function(event){
+		if(req.status >= 200 && req.status < 400){
+			var response = JSON.parse(req.responseText);
+
+			console.log("response dropdown", response);
+
+			var dropdown = document.getElementById("dropdown");
+			for (var i = 0; i < response.length; i++){
+				var newOption = document.createElement("option");
+				newOption.textContent = response[i].name;
+				newOption.id = response[i].id; // what is actually sent back to db
+				dropdown.add(newOption);
+			}
+
+		} else 
+			console.log("Error in network request: " + req.statusText);
+	});
+	console.log("payload", payload);
+	req.send(JSON.stringify(payload));
+}
 //populateTable();
 
 
@@ -83,7 +112,7 @@ function bindButtons(){
 		payload.name = document.getElementById('name').value;
 		payload.region = document.getElementById('region').value;
 		payload.system = document.getElementById('system').value;
-		payload.sid = document.getElementById('sid').value;
+		payload.sid = document.getElementById('species').value;
 		payload.population = document.getElementById('population').value;
 
 		console.log("current payload", payload);
@@ -99,6 +128,7 @@ function bindButtons(){
 		//event.preventDefault();
 	});
 }
-};
 
+};
+populateDropdown("Species");
 bindButtons();

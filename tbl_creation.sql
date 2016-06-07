@@ -83,7 +83,7 @@ CREATE TABLE Planets
 	sid INTEGER, #fkey
 	FOREIGN KEY (sid) REFERENCES Species(id)
 	ON DELETE RESTRICT ON UPDATE CASCADE,
-	populaton INTEGER
+	population INTEGER
 );
 
 ###########################

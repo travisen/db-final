@@ -20,24 +20,42 @@ app.get('/', function(req,res,next){
 	res.render('home');
 });
 
+app.post('/dropdowns', function(req,res,next){
+  console.log("running");
+  var table = null;
+
+  table = req.body.table;
+
+  var sql = ('SELECT id, name FROM '+table);
+  console.log("query after processing", sql);
+  console.log("table", table);
+
+  mysql.pool.query(sql, function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    res.send(JSON.stringify(rows));
+  });
+
+});
+
 app.post('/insert', function(req,res,next){
 
   var table = null;
-  table = "Species";  
+  table = "Planets";  
   var dataRecieved = [];
 
   console.log("inserting into table: ", table);
   console.log("data from client", req.body);
 
   dataRecieved.push(req.body);
-
   /*
-  var sql = "INSERT INTO ?? SET ??";
-  var inserts = [table, req.body];
-  sql = mysql.format(sql, inserts);
+  for (val in dataRecieved){
+    console.log(dataRecieved[val]);
+  }
   */
-  
-  var sql = ("INSERT INTO " + table + " SET ?")
+  var sql = ("INSERT INTO " + table + " SET ?");
   console.log("query after processing", sql);
   
   mysql.pool.query(sql, dataRecieved, function(err,rows,fields){
