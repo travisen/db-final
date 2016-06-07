@@ -28,7 +28,7 @@ function populateTable(tableNameFromDB){
 	req.send(null);
 };
 
-function populateDropdown(tableIn){
+function populateDropdown(tableIn, dropSelect){
 
 	var req = new XMLHttpRequest();
 	var payload = {table: null};
@@ -42,8 +42,8 @@ function populateDropdown(tableIn){
 			var response = JSON.parse(req.responseText);
 
 			console.log("response dropdown", response);
-
-			var dropdown = document.getElementById("dropdown");
+			console.log("dropselect", dropSelect);
+			var dropdown = document.getElementById(dropSelect);
 			for (var i = 0; i < response.length; i++){
 				var newOption = document.createElement("option");
 				newOption.textContent = response[i].name;
@@ -112,7 +112,7 @@ function bindButtons(){
 		payload.name = document.getElementById('name').value;
 		payload.region = document.getElementById('region').value;
 		payload.system = document.getElementById('system').value;
-		payload.sid = document.getElementById('dropdown').value;
+		payload.sid = document.getElementById('dropdown-species').value;
 		payload.population = document.getElementById('population').value;
 
 		console.log("current payload", payload);
@@ -123,6 +123,7 @@ function bindButtons(){
 		req.addEventListener('load', function() {
 			populateTable();
 		});
+		console.log("planets payload: ", payload);
 		req.send(JSON.stringify(payload));
 		//populateDropdown("Species");
 		location.reload();
@@ -193,7 +194,54 @@ function bindButtons(){
 	});
   }
 
+	if(document.getElementById("characters-page")){
+		populateTable("get-characters");
+		console.log("planets page");
+		document.getElementById('submit-data-characters').addEventListener('click', function(event){
+		console.log("running");
+		var req = new XMLHttpRequest();
+		var payload = {
+			f_name: null,
+			l_name: null,
+			hid: null,
+			fid: null,
+			sid: null
+		};
+
+		payload.f_name = document.getElementById('f_name').value;
+		payload.l_name = document.getElementById('l_name').value;
+		payload.hid = document.getElementById('dropdown-planets').value;
+		payload.fid = document.getElementById('dropdown-factions').value;
+		payload.sid = document.getElementById('dropdown-species').value;
+
+
+		console.log("current payload", payload);
+
+		req.open("POST", "http://localhost:3012/insert-characters", true);
+		req.setRequestHeader('Content-Type', 'application/json');
+
+		req.addEventListener('load', function() {
+			populateTable();
+		});
+		console.log("planets payload: ", payload);
+		req.send(JSON.stringify(payload));
+		//populateDropdown("Species");
+		location.reload();
+		//populateDropdown("Species");
+		//event.preventDefault();
+	});
+  }
+
 };
 
-populateDropdown("Species");
+/* DROPDOWN MENUS make conditional */
+if(document.getElementById("planets-page") || document.getElementById("characters-page"))
+	populateDropdown("Species", "dropdown-species");
+
+if(document.getElementById("leaders-page") || document.getElementById("characters-page"))
+	populateDropdown("Factions", "dropdown-factions");
+
+if(document.getElementById("service-page") || document.getElementById("characters-page"))
+	populateDropdown("Planets", "dropdown-planets");
+
 bindButtons();
