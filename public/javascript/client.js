@@ -131,23 +131,54 @@ function bindButtons(){
 	});
   }
 
-	if(document.getElementById("species-page")){
+	if(document.getElementById("factions-page")){
+		populateTable("get-factions");
+		console.log("factions page");
+		document.getElementById('submit-data-factions').addEventListener('click', function(event){
+		console.log("running");
+		var req = new XMLHttpRequest();
+		var payload = {
+			name: null
+		}
+
+		payload.name = document.getElementById('name').value;
+		console.log("current payload", payload);
+
+		req.open("POST", "http://localhost:3012/insert-factions", true);
+		req.setRequestHeader('Content-Type', 'application/json');
+
+		req.addEventListener('load', function() {
+			populateTable();
+		});
+
+		console.log("factions payload", payload);
+		req.send(JSON.stringify(payload));
+		//populateDropdown("Species");
+		location.reload();
+		//populateDropdown("Species");
+		//event.preventDefault();
+	});
+  }
+
+	if(document.getElementById("ships-page")){
 		//populateTable("get-planets");
-		console.log("planets page");
-		document.getElementById('submit-data-species').addEventListener('click', function(event){
+		console.log("ships page");
+		document.getElementById('submit-data-ships').addEventListener('click', function(event){
 		console.log("running");
 		var req = new XMLHttpRequest();
 		var payload = {
 			name: null,
-			language: null
+			class: null,
+			crew: null
 		}
 
 		payload.name = document.getElementById('name').value;
-		payload.language = document.getElementById('language').value;
+		payload.language = document.getElementById('class').value;
+		payload.language = document.getElementById('crew').value;
 
 		console.log("current payload", payload);
 
-		req.open("POST", "http://localhost:3012/insert-species", true);
+		req.open("POST", "http://localhost:3012/insert-ships", true);
 		req.setRequestHeader('Content-Type', 'application/json');
 
 		req.addEventListener('load', function() {
@@ -160,6 +191,7 @@ function bindButtons(){
 		//event.preventDefault();
 	});
   }
+
 
 };
 populateDropdown("Species");
