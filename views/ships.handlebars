@@ -3,23 +3,36 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Test Header</th>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Class</th>
+				<th>Crew</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="table-body">
 			<tr>
-				<td>{{this.}}</td>
+				<td>{{this.id}}</td>
+				<td>{{this.name}}</td>
+				<td>{{this.class}}</td>
+				<td>{{this.crew}}</td>
 			</tr>
 		</tbody>
 	</table>
 
 	<br>
 
-	<form action="http://localhost:3012/" method="POST">
+	<form>
 
-		<label>Test Form</label>
-		<input value="{{this.name}}">
+		<label>Name</label>
+		<input id="name">
+				
+		<label>Class</label>
+		<input id="class">
+
+		<label>Crew</label>
+		<input type="number" id="crew">
 
 		<input type="submit" value="Submit"/>
+
 	</form>
 </div>

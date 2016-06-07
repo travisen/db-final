@@ -20,6 +20,11 @@ app.get('/', function(req,res,next){
 	res.render('home');
 });
 
+app.get('/home', function(req,res,next){
+  //console.log("test");
+  res.render('home');
+});
+
 app.post('/dropdowns', function(req,res,next){
   console.log("running");
   var table = null;
@@ -40,7 +45,7 @@ app.post('/dropdowns', function(req,res,next){
 
 });
 
-app.post('/insert', function(req,res,next){
+app.post('/insert-planets', function(req,res,next){
 
   var table = null;
   table = "Planets";  
@@ -50,11 +55,96 @@ app.post('/insert', function(req,res,next){
   console.log("data from client", req.body);
 
   dataRecieved.push(req.body);
-  /*
-  for (val in dataRecieved){
-    console.log(dataRecieved[val]);
-  }
-  */
+
+  var sql = ("INSERT INTO " + table + " SET ?");
+  console.log("query after processing", sql);
+  
+  mysql.pool.query(sql, dataRecieved, function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+  });
+});
+
+app.post('/insert-species', function(req,res,next){
+
+  var table = null;
+  table = "Species";  
+  var dataRecieved = [];
+
+  console.log("inserting into table: ", table);
+  console.log("data from client", req.body);
+
+  dataRecieved.push(req.body);
+  
+  var sql = ("INSERT INTO " + table + " SET ?");
+  console.log("query after processing", sql);
+  console.log("data rec", dataRecieved);
+
+  mysql.pool.query(sql, dataRecieved, function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+  });
+});
+
+app.post('/insert-factions', function(req,res,next){
+
+  var table = null;
+  table = "Factions";  
+  var dataRecieved = [];
+
+  console.log("inserting into table: ", table);
+  console.log("data from client", req.body);
+
+  dataRecieved.push(req.body);
+  
+  var sql = ("INSERT INTO " + table + " SET ?");
+  console.log("query after processing", sql);
+  
+  mysql.pool.query(sql, dataRecieved, function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+  });
+});
+
+app.post('/insert-characters', function(req,res,next){
+
+  var table = null;
+  table = "Characters";  
+  var dataRecieved = [];
+
+  console.log("inserting into table: ", table);
+  console.log("data from client", req.body);
+
+  dataRecieved.push(req.body);
+  
+  var sql = ("INSERT INTO " + table + " SET ?");
+  console.log("query after processing", sql);
+  
+  mysql.pool.query(sql, dataRecieved, function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+  });
+});
+
+app.post('/insert-ships', function(req,res,next){
+
+  var table = null;
+  table = "Ship";  
+  var dataRecieved = [];
+
+  console.log("inserting into table: ", table);
+  console.log("data from client", req.body);
+
+  dataRecieved.push(req.body);
+  
   var sql = ("INSERT INTO " + table + " SET ?");
   console.log("query after processing", sql);
   

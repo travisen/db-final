@@ -421,12 +421,12 @@ there.
 /* Nav Bar */
 .navigation {
   margin-bottom: 15px;
+  background-color: #1F282D;
 }
 
 nav.primary ul,
 nav.primary ul li {
   margin: 0px;
-  background-color: #1F282D;
 }
 
 nav.primary select {

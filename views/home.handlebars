@@ -1,43 +1,10 @@
 <div class ="container">
-	<h1>Characters</h1>
-	<h3>Current Character List</h3>
-	<table>
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Homeworld</th>
-				<th>Faction</th>
-				<th>Ship</th>
-				<th>Structure</th>
-				<th>Weapon</th>
-				<th>Species</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>{{this.id}}</td>
-				<td>{{this.f_name}}</td>
-				<td>{{this.l_name}}</td>
-				<td>{{this.homeworld}}</td>
-				<td>{{this.faction}}</td>
-				<td>{{this.ship}}</td>
-				<td>{{this.structure}}</td>
-				<td>{{this.weapon}}</td>
-				<td>{{this.species}}</td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<br>
+	<h1>Welcome to the Star Wars Database</h1>
+	<h3>Instructions</h3>
+	<ul>
+		<li><h6>Use the menu above to navigate. It will be on each page.</h6></li>
+		<li><h6>Each individual page has a submit form to add new data to the pages table and a select all query returning all the current data from that table</h6></li>
+		<li><h6>The Search & Sum page contains the search functionality with the character table where you can search for a character by name and a sum functinonality which returns the current population of all the planets currently in the database.</h6></li>
+	</ul>
 
-	<h3>Add characters</h3>
-	<form action="http://localhost:3012/" method="POST">
-
-		<label>Test Form</label>
-		<input value="{{this.name}}">
-
-		<input type="submit" value="Submit"/>
-	</form>
 </div>
