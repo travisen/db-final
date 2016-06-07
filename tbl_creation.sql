@@ -87,6 +87,12 @@ CREATE TABLE Planets
 );
 
 ###########################
+#####SELECTION QUERIES#####
+###########################
+
+
+
+###########################
 #####INSERT CHARACTERS#####
 ###########################
 
@@ -99,11 +105,4 @@ VALUES (NULL, "Gial", "Ackbar", "Mon Cala", "New Republic","Mon Calamari");
 INSERT INTO `Characters`(`id`,`f_name`,`l_name`,`homeworld`,`faction`,`species`)
 VALUES (NULL, "Gial", "Ackbar", "Mon Cala", "New Republic","Mon Calamari");
 
-###########################
-#####INSERT FACTIONS#######
-###########################
 
-
-###########################
-#####INSERT FACTIONS#######
-###########################

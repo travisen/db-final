@@ -137,7 +137,7 @@ app.post('/insert-characters', function(req,res,next){
 app.post('/insert-ships', function(req,res,next){
 
   var table = null;
-  table = "Ship";  
+  table = "Ships";  
   var dataRecieved = [];
 
   console.log("inserting into table: ", table);

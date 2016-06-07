@@ -159,9 +159,8 @@ function bindButtons(){
 		//event.preventDefault();
 	});
   }
-
 	if(document.getElementById("ships-page")){
-		//populateTable("get-planets");
+		populateTable("get-ships");
 		console.log("ships page");
 		document.getElementById('submit-data-ships').addEventListener('click', function(event){
 		console.log("running");
@@ -173,8 +172,8 @@ function bindButtons(){
 		}
 
 		payload.name = document.getElementById('name').value;
-		payload.language = document.getElementById('class').value;
-		payload.language = document.getElementById('crew').value;
+		payload.class = document.getElementById('class').value;
+		payload.crew = document.getElementById('crew').value;
 
 		console.log("current payload", payload);
 
@@ -184,6 +183,8 @@ function bindButtons(){
 		req.addEventListener('load', function() {
 			populateTable();
 		});
+
+		console.log("ships send", payload);
 		req.send(JSON.stringify(payload));
 		//populateDropdown("Species");
 		location.reload();
@@ -192,7 +193,7 @@ function bindButtons(){
 	});
   }
 
-
 };
+
 populateDropdown("Species");
 bindButtons();
