@@ -177,6 +177,50 @@ app.post('/insert-ships', function(req,res,next){
   });
 });
 
+app.post('/insert-leaders', function(req,res,next){
+
+  var table = null;
+  table = "Faction_leaders";  
+  var dataRecieved = [];
+
+  console.log("inserting into table: ", table);
+  console.log("data from client", req.body);
+
+  dataRecieved.push(req.body);
+  
+  var sql = ("INSERT INTO " + table + " SET ?");
+  console.log("query after processing", sql);
+  
+  mysql.pool.query(sql, dataRecieved, function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+  });
+});
+
+app.post('/insert-service', function(req,res,next){
+
+  var table = null;
+  table = "Serves_on";  
+  var dataRecieved = [];
+
+  console.log("inserting into table: ", table);
+  console.log("data from client", req.body);
+
+  dataRecieved.push(req.body);
+  
+  var sql = ("INSERT INTO " + table + " SET ?");
+  console.log("query after processing", sql);
+  
+  mysql.pool.query(sql, dataRecieved, function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+  });
+});
+
 app.get('/get-characters', function(req,res,next){
   mysql.pool.query('SELECT * FROM Characters', function(err,rows,fields){
     if(err){

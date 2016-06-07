@@ -243,6 +243,68 @@ function bindButtons(){
 	});
   }
 
+	if(document.getElementById("leaders-page")){
+		populateTable("get-leaders");
+		console.log("planets page");
+		document.getElementById('submit-data-leaders').addEventListener('click', function(event){
+		console.log("running");
+		var req = new XMLHttpRequest();
+		var payload = {
+			cid: null,
+			fid: null
+		}
+
+		payload.cid = document.getElementById('dropdown-characters').value;
+		payload.fid = document.getElementById('dropdown-factions').value;
+
+		console.log("current payload", payload);
+
+		req.open("POST", "http://localhost:3012/insert-leaders", true);
+		req.setRequestHeader('Content-Type', 'application/json');
+
+		req.addEventListener('load', function() {
+			populateTable();
+		});
+		console.log("leaders payload: ", payload);
+		req.send(JSON.stringify(payload));
+		//populateDropdown("Species");
+		location.reload();
+		//populateDropdown("Species");
+		//event.preventDefault();
+	});
+  }
+
+	if(document.getElementById("service-page")){
+		populateTable("get-service");
+		console.log("service page");
+		document.getElementById('submit-data-service').addEventListener('click', function(event){
+		console.log("running");
+		var req = new XMLHttpRequest();
+		var payload = {
+			cid: null,
+			sid: null
+		}
+
+		payload.cid = document.getElementById('dropdown-characters').value;
+		payload.sid = document.getElementById('dropdown-ships').value;
+
+		console.log("current payload", payload);
+
+		req.open("POST", "http://localhost:3012/insert-service", true);
+		req.setRequestHeader('Content-Type', 'application/json');
+
+		req.addEventListener('load', function() {
+			populateTable();
+		});
+		console.log("service payload: ", payload);
+		req.send(JSON.stringify(payload));
+		//populateDropdown("Species");
+		location.reload();
+		//populateDropdown("Species");
+		//event.preventDefault();
+	});
+  }
+
 };
 
 /* DROPDOWN MENUS make conditional */
@@ -253,9 +315,12 @@ if(document.getElementById("leaders-page") || document.getElementById("character
 	|| document.getElementById("leaders-page"))
 	populateDropdown("Factions", "dropdown-factions");
 
-if(document.getElementById("service-page") || document.getElementById("characters-page"))
+if(document.getElementById("characters-page"))
 	populateDropdown("Planets", "dropdown-planets");
 
-if(document.getElementById("leaders-page"))
+if(document.getElementById("leaders-page") || document.getElementById("service-page"))
 	populateDropdown("Characters", "dropdown-characters");
+if(document.getElementById("service-page"))
+	populateDropdown("Ships", "dropdown-ships");
+
 bindButtons();
