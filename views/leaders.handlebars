@@ -1,0 +1,30 @@
+<div class ="container" id="leaders-page">
+	<h1>Leaders</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Character ID</th>
+				<th>Faction ID</th>
+			</tr>
+		</thead>
+		<tbody id="table-body">
+			<tr>
+				<td>{{this.cid}}</td>
+				<td>{{this.fid}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br>
+
+	<form>
+
+		<label>Character ID</label>
+		<select id="dropdown-characters"></select>
+
+		<label>Faction ID</label>
+		<select id="dropdown-factions"></select>
+
+		<input type="submit" value = "Submit" id="submit-data-factions"/>
+	</form>
+</div>

@@ -45,6 +45,27 @@ app.post('/dropdowns', function(req,res,next){
 
 });
 
+app.post('/dropdowns-characters', function(req,res,next){
+  console.log("running");
+  var table = null;
+
+  table = req.body.table;
+
+  var sql = ('SELECT id, f_name, l_name FROM '+table);
+  console.log("query after processing", sql);
+  console.log("table", table);
+
+  mysql.pool.query(sql, function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    res.send(JSON.stringify(rows));
+  });
+
+});
+
+
 app.post('/insert-planets', function(req,res,next){
 
   var table = null;
@@ -252,7 +273,7 @@ app.get('/get-leaders', function(req,res,next){
 });
 
 app.get('/view-leaders', function(req,res,next){
-  res.render('view-leaders');
+  res.render('leaders');
 });
 
 app.get('/templates', function(req,res,next){

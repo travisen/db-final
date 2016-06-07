@@ -34,7 +34,11 @@ function populateDropdown(tableIn, dropSelect){
 	var payload = {table: null};
 	payload.table = tableIn;
 
-	req.open("POST", "http://localhost:3012/dropdowns", true);
+	if (tableIn == "Characters"){
+		req.open("POST", "http://localhost:3012/dropdowns-characters", true);
+	} else {
+		req.open("POST", "http://localhost:3012/dropdowns", true);
+	}
 	req.setRequestHeader('Content-Type', 'application/json');
 
 	req.addEventListener('load', function(event){
@@ -46,7 +50,14 @@ function populateDropdown(tableIn, dropSelect){
 			var dropdown = document.getElementById(dropSelect);
 			for (var i = 0; i < response.length; i++){
 				var newOption = document.createElement("option");
-				newOption.textContent = response[i].name;
+				if (tableIn == "Characters") {
+					console.log("newOption.textContent = response[i].f_name;", newOption.textContent = response[i].f_name);
+					newOption.textContent = response[i].f_name;
+					newOption.textContent += " ";
+					newOption.textContent += response[i].l_name;
+				} else {
+					newOption.textContent = response[i].name;
+				}
 				newOption.value = response[i].id; // what is actually sent back to db
 				dropdown.add(newOption);
 			}
@@ -238,10 +249,13 @@ function bindButtons(){
 if(document.getElementById("planets-page") || document.getElementById("characters-page"))
 	populateDropdown("Species", "dropdown-species");
 
-if(document.getElementById("leaders-page") || document.getElementById("characters-page"))
+if(document.getElementById("leaders-page") || document.getElementById("characters-page")
+	|| document.getElementById("leaders-page"))
 	populateDropdown("Factions", "dropdown-factions");
 
 if(document.getElementById("service-page") || document.getElementById("characters-page"))
 	populateDropdown("Planets", "dropdown-planets");
 
+if(document.getElementById("leaders-page"))
+	populateDropdown("Characters", "dropdown-characters");
 bindButtons();
