@@ -47,7 +47,7 @@ function populateDropdown(tableIn){
 			for (var i = 0; i < response.length; i++){
 				var newOption = document.createElement("option");
 				newOption.textContent = response[i].name;
-				newOption.id = response[i].id; // what is actually sent back to db
+				newOption.value = response[i].id; // what is actually sent back to db
 				dropdown.add(newOption);
 			}
 
@@ -112,7 +112,7 @@ function bindButtons(){
 		payload.name = document.getElementById('name').value;
 		payload.region = document.getElementById('region').value;
 		payload.system = document.getElementById('system').value;
-		payload.sid = document.getElementById('species').value;
+		payload.sid = document.getElementById('dropdown').value;
 		payload.population = document.getElementById('population').value;
 
 		console.log("current payload", payload);
