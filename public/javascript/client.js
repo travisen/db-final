@@ -40,6 +40,7 @@ function bindButtons(){
 	if(document.getElementById("species-page")){
 	//species submit
 	console.log("species page!");
+	populateTable("get-species");
 	document.getElementById('submit-data-species').addEventListener('click', function(event){
 		console.log("running");
 		var req = new XMLHttpRequest();
@@ -63,8 +64,10 @@ function bindButtons(){
 		location.reload();
 		//event.preventDefault();
 	});
-}
+}	
+	//planets page
 	if(document.getElementById("planets-page")){
+		populateTable("get-planets");
 		console.log("planets page");
 		document.getElementById('submit-data-planets').addEventListener('click', function(event){
 		console.log("running");
