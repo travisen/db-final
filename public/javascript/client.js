@@ -55,7 +55,8 @@ function bindButtons(){
 			populateTable();
 		});
 		req.send(JSON.stringify(payload));
-		event.preventDefault();
+		location.reload();
+		//event.preventDefault();
 	});
 };
 
