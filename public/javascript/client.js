@@ -2,7 +2,7 @@ document.addEventListener('DOMContentloaded', bindButtons);
 // this function is used to populate tables
 function populateTable(tableNameFromDB){
 	var req = new XMLHttpRequest();
-	req.open("GET", "http://localhost:3012/get-characters", true);
+	req.open("GET", "http://localhost:3012/get-species", true);
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load', function(event){
 		if(req.status >= 200 && req.status < 400){
