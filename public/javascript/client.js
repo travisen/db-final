@@ -23,7 +23,7 @@ function populateTable(tableNameFromDB){
 				}
 			}
 		} else 
-			console.log("Error in network request: " + request.statusText);
+			console.log("Error in network request: " + req.statusText);
 	});
 	req.send(null);
 };
@@ -303,6 +303,61 @@ function bindButtons(){
 		//populateDropdown("Species");
 		//event.preventDefault();
 	});
+  }
+  // search and sum page
+  if(document.getElementById("search-sum-page")){
+
+		console.log("search-sum-page page");
+		document.getElementById('submit-data-search').addEventListener('click', function(event){
+		console.log("running");
+		var req = new XMLHttpRequest();
+		var payload = {
+			search: null
+		};
+
+		payload.search = document.getElementById('search-for').value;
+
+		console.log("current payload.search", payload.search);
+
+		req.open("POST", "http://localhost:3012/find-characters", true);
+		req.setRequestHeader('Content-Type', 'application/json');
+
+		req.addEventListener('load', function() {
+			populateTable();
+		});
+		console.log("planets payload: ", payload);
+		req.send(JSON.stringify(payload));
+		//populateDropdown("Species");
+
+		location.reload();
+		//populateDropdown("Species");
+		//event.preventDefault();
+	});
+
+		// galactic population
+		var req2 = new XMLHttpRequest();
+
+		req2.open("POST", "http://localhost:3012/sum-population", true);
+		req2.setRequestHeader('Content-Type', 'application/json');
+		req2.addEventListener('load', function(event){
+		if(req2.status >= 200 && req2.status < 400){
+			var response = JSON.parse(req2.responseText);
+
+			console.log("response sum population", response[0]);
+
+			var para = document.createElement("p");
+			var aString = response[0];
+
+			para.textContent = JSON.stringify(aString);
+
+			document.getElementById("pop").appendChild(para);
+						
+		} else 
+			console.log("Error in network request: " + request.statusText);
+
+	});
+		req2.send(null);
+
   }
 
 };

@@ -316,6 +316,39 @@ app.get('/get-leaders', function(req,res,next){
   });
 });
 
+app.post('/find-characters', function(req,res,next){
+  var dataRecieved = [];
+
+  console.log("data from client for find", req.body);
+
+  dataRecieved.push(req.body.search);
+
+  mysql.pool.query('SELECT * FROM Characters WHERE l_name=?', dataRecieved, function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    console.log("after search", rows);
+    if (rows.length <= 0){
+      rows = "No data";
+    }
+    console.log("rows after check", rows);
+    res.send(JSON.stringify(rows));
+  });
+});
+
+app.post('/sum-population', function(req,res,next){
+
+  mysql.pool.query('SELECT sum(population) FROM Planets', function(err,rows,fields){
+    if(err){
+      next(err);
+      return;
+    }
+    console.log("population", rows);
+    res.send(rows);
+  });
+});
+
 app.get('/view-leaders', function(req,res,next){
   res.render('leaders');
 });
@@ -323,7 +356,11 @@ app.get('/view-leaders', function(req,res,next){
 app.get('/templates', function(req,res,next){
 	//console.log("test");
 	res.render('templates');
-})
+});
+
+app.get('/search-sum', function(req,res,next){
+  res.render('search-sum')
+});
 
 app.use(function(req,res){
   res.status(404);

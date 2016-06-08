@@ -1,0 +1,35 @@
+<div class="container" id="search-sum-page">
+	<h1>Search & Sum Page<h1>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Homeworld</th>
+				<th>Faction</th>
+				<th>Species</th>
+			</tr>
+		</thead>
+		<tbody id="table-body">
+			<tr>
+				<td>{{this.id}}</td>
+				<td>{{this.f_name}}</td>
+				<td>{{this.l_name}}</td>
+				<td>{{this.homeworld}}</td>
+				<td>{{this.faction}}</td>
+				<td>{{this.species}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<form>
+		<label>Search for a character by last name</label>
+		<input placeholder="last name" id="search-for"></input>
+
+		<input type="submit" value="Submit" id="submit-data-search"/>
+	</form>
+	<div id="pop">
+		<h1>Current Galactic Population:</h2>
+	</div>
+</div>
